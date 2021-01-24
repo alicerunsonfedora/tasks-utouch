@@ -1,0 +1,15 @@
+{
+    "name": "tasks.marquiskurt",
+    "description": "Keep track of important tasks and reminders.",
+    "architecture": "@CLICK_ARCH@",
+    "title": "Tasks",
+    "hooks": {
+        "tasks": {
+            "apparmor": "tasks.apparmor",
+            "desktop":  "tasks.desktop"
+        }
+    },
+    "version": "1.0.0",
+    "maintainer": "Marquis Kurt <software@marquiskurt.net>",
+    "framework" : "@CLICK_FRAMEWORK@"
+}
