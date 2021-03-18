@@ -11,11 +11,25 @@ function createDBTables() {
   var database = getDatabase();
   database.transaction(
     function (trans) {
-      trans.executeSql(
-        'CREATE TABLE IF NOT EXISTS task(id INTEGER PRIMARY KEY AUTOINCREMENT, task TEXT, complete INTEGER)'
-      );
+      try {
+        trans.executeSql(
+          'create table if not exists task(id integer primary key autoincrement, task text, complete boolean default "f")'
+        );
+      } catch (err) {
+        console.log(err);
+      }
     }
   );
+}
+
+function getAllTasks() {
+  var result = {};
+  getDatabase().transaction(
+    function (trans) {
+      result = trans.executeSql('select * from task');
+    }
+  )
+  return result;
 }
 
 function getTaskById(id) {
@@ -24,10 +38,40 @@ function getTaskById(id) {
   database.transaction(
     function (trans) {
       result = trans.executeSql(
-        'SELECT * from task t where id == t.id'
+        'select * from task t where id = t.id'
       );
     }
   );
+  return result;
+}
 
-  console.log(result);
+function createTask(task) {
+  console.log(task);
+  console.log(typeof (task));
+  getDatabase().transaction(
+    function (trans) {
+      trans.executeSql('insert into task (task) values (\'' + task + '\')');
+    }
+  );
+}
+
+function toggleTask(id) {
+  var current = getTaskById(id);
+  if (current.rows.length < 1) {
+    return;
+  }
+  var newStatus = current.rows.item(0).complete == "f" ? "t" : "f";
+  getDatabase().transaction(
+    function (trans) {
+      trans.executeSql('update task set complete = \'' + newStatus + '\' where id =' + id);
+    }
+  )
+}
+
+function deleteTask(id) {
+  getDatabase().transaction(
+    function (trans) {
+      trans.executeSql('delete from task where id =' + id);
+    }
+  )
 }
