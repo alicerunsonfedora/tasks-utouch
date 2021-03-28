@@ -46,13 +46,15 @@ function getTaskById(id) {
 }
 
 function createTask(task) {
-  console.log(task);
-  console.log(typeof (task));
+  var newIndex = -1;
   getDatabase().transaction(
     function (trans) {
       trans.executeSql('insert into task (task) values (\'' + task + '\')');
+      var taskQuery = trans.executeSql('select id from task where task = \'' + task + '\'');
+      newIndex = taskQuery.rows.item(0);
     }
   );
+  return newIndex;
 }
 
 function toggleTask(id) {
