@@ -1,7 +1,7 @@
 [Desktop Entry]
 _Name=Tasks
 Exec=qmlscene %U qml/Main.qml
-Icon=assets/logo.svg
+Icon=assets/tasks.png
 Terminal=false
 Type=Application
 X-Ubuntu-Touch=true
