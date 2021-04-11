@@ -99,11 +99,11 @@ Page {
 		id: addTask
 		Dialog {
 			id: addTaskDialog
-			title: "Enter a new task"
-			text: "What do you want to accomplish?"
+			title: i18n.tr('Enter a new task')
+			text: i18n.tr('What do you want to accomplish?')
 			TextField {
 				id: newTask
-				placeholderText: "Fulfill life goals"
+				placeholderText: i18n.tr('Fulfill life goals')
 				hasClearButton: true
 				onAccepted: {
 					if (allTasks.createNewTask != undefined)
@@ -112,7 +112,7 @@ Page {
 				}
 			}
 			Button {
-				text: "Cancel"
+				text: i18n.tr('Cancel')
 				onClicked: PopupUtils.close(addTaskDialog);
 			}
 		}
@@ -126,7 +126,7 @@ Page {
 			actions: [
 				Action {
 					iconName: "add"
-					text: "New Task"
+					text: i18n.tr('New Task')
 					onTriggered: {
 						PopupUtils.open(addTask)
 					}
@@ -161,7 +161,7 @@ Page {
 				actions: [
 					Action {
 						iconName: "delete"
-						text: "Delete"
+						text: i18n.tr('Delete')
 						onTriggered: allTasks.deleteTask(id)
 					}
 				]
@@ -171,7 +171,7 @@ Page {
 				actions: [
 					Action {
 						iconName: complete ? "undo": "tick";
-						text: "Toggle complete status"
+						text: i18n.tr('Toggle complete status')
 						onTriggered: allTasks.modify(id)
 					}
 				]
