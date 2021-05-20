@@ -1,0 +1,11 @@
+/*
+    Ubuntu Touch Tasks Changelog
+    All notable changes to Ubuntu Touch Tasks will be documented in this file.
+
+    The format is loosely based on Keep a Changelog, and this project adheres to Semantic Versioning.
+*/
+[1.0.1]
+- Added support for translations.
+
+[1.0.0]
+- Initial release.
